@@ -1,9 +1,9 @@
 import {Router} from'express';
+
 import PersonController from "../controllers/PersonController";
 
 const route = Router();
-route.get("/index", PersonController.index);
-
+route.post("/create", PersonController.create);
 
 
 export default route;

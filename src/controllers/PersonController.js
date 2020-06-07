@@ -1,10 +1,12 @@
 import Person from "../models/Person";
 
 class PersonController {
-  async index(req, res) {
-    const text = await Person.lerArquivo();
+  async create(req, res) {
+  
+    Person.createGrid(req.body);
 
-    return res.json(text);
+    return res.json(req.body);
+
   }
 
 }

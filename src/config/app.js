@@ -1,6 +1,5 @@
 import express from "express";
-import routes from "./src/routes/RoutePerson";
-
+import routes from "../routes/RoutePerson";
 
 class App {
   constructor() {

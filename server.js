@@ -1,4 +1,5 @@
-import app from "./app";
+import app from "./src/config/app";
+import fs from 'fs';
 
 app.listen(3002, () => {
     try {
@@ -16,6 +17,6 @@ app.listen(3002, () => {
     } catch (error) {
         console.log(error.message);
     }
- 
+  
      console.log("Server on")
  });
