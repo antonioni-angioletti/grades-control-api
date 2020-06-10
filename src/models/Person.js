@@ -10,8 +10,19 @@ class Person {
       fs.readFile('accounts.json', 'utf-8', (err, dataAccount) => {
 
          let dado = JSON.parse(dataAccount);
-         let {student,subject,type,value} = data
-         let json = {id: dado.nextId++,student:data[0].student,subject:data[0].subject,type:data[0].type,value:data[0].value};
+         let {
+            student,
+            subject,
+            type,
+            value
+         } = data
+         let json = {
+            id: dado.nextId++,
+            student: data[0].student,
+            subject: data[0].subject,
+            type: data[0].type,
+            value: data[0].value
+         };
 
          console.log(json);
          dado.grades.push(json);
@@ -28,7 +39,7 @@ class Person {
    }
    async list() {
       let dado = await fs.readFileSync('accounts.json', 'utf-8');
-   
+
       return JSON.parse(dado);
    }
    async deleteStudent(id) {
@@ -45,16 +56,55 @@ class Person {
 
          let dado = JSON.parse(dataAccount);
          let oldIndex = dado.grades.findIndex((account) => account.id === body.id);
-        
+
          dado.grades[oldIndex] = body;
          fs.writeFile("accounts.json", JSON.stringify(dado), err => {});
 
       });
+   };
+   async studentNote(body) {
 
+      let dado = await fs.readFileSync('accounts.json', 'utf-8');
+      let account = JSON.parse(dado);
+      let count = 0;
+      account.grades.forEach((student) => {
+         if (body.student === student.student && body.subject === student.subject) {
+            count = count + student.value;
+         };
+      });
 
+      return count;
+   };
+   async averageGrades(body) {
+      let dado = await fs.readFileSync('accounts.json', 'utf-8');
+      let account = JSON.parse(dado);
+      let count = 0;
+      let total = 0
+      account.grades.forEach((student) => {
+         if (body.subject === student.subject && body.type === student.type) {
 
+            count = count + student.value;
+            total = total + 1;
+         };
+      });
+
+      return count / total;
    };
 
+   async bestGrades(body) {
+      let dado = await fs.readFileSync('accounts.json', 'utf-8');
+      let account = JSON.parse(dado);
+      let count = 0;
+      let total = 0
+      account.grades.forEach((student) => {
+         if (body.subject === student.subject && body.type === student.type) {
+
+
+         };
+      });
+
+      return count / total;
+   };
 
 
 }

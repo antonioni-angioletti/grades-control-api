@@ -32,7 +32,7 @@ class PersonController {
     } catch (error) {
       res.status(400).send({
         Error: error.message
-      })
+      });
     }
   }
   async deleteStudent(req, res) {
@@ -46,6 +46,7 @@ class PersonController {
       })
     }
   }
+  
   async updateStudent(req, res) {
     try {
       Person.updateStudent(req.body)
@@ -56,5 +57,46 @@ class PersonController {
       })
     }
   }
+  async studentNote(req, res) {
+    let dado = Person.studentNote(req.body)
+    
+    try {
+      Promise.resolve(dado).then((value) => {
+        res.send(`${value}`);
+      });
+    } catch (error) {
+      res.status(400).send({
+        Error: error.message
+      });
+    }
+  }
+
+  async averageGrades(req, res) {
+    let dado = Person.averageGrades(req.body)
+    
+    try {
+      Promise.resolve(dado).then((value) => {
+        res.send(`${value}`);
+      });
+    } catch (error) {
+      res.status(400).send({
+        Error: error.message
+      });
+    }
+  }
+  async bestGrades(req, res) {
+    let dado = Person.bestGrades(req.body)
+    
+    try {
+      Promise.resolve(dado).then((value) => {
+        res.send(`${value}`);
+      });
+    } catch (error) {
+      res.status(400).send({
+        Error: error.message
+      });
+    }
+  }
+
 }
 export default new PersonController();
