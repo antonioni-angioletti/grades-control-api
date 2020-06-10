@@ -94,19 +94,16 @@ class Person {
    async bestGrades(body) {
       let dado = await fs.readFileSync('accounts.json', 'utf-8');
       let account = JSON.parse(dado);
-      let count = 0;
-      let total = 0
+      let gradeArray = [];
       account.grades.forEach((student) => {
          if (body.subject === student.subject && body.type === student.type) {
 
-     
+            gradeArray.push(student.value)
 
-
-            
          };
       });
 
-      return count / total;
+      return gradeArray.sort((a,b)=>b-a);
    };
 
 

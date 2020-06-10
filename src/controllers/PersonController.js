@@ -89,7 +89,7 @@ class PersonController {
     
     try {
       Promise.resolve(dado).then((value) => {
-        res.send(`${value}`);
+        res.send(value.slice(0,3));
       });
     } catch (error) {
       res.status(400).send({
